@@ -1,0 +1,26 @@
+# run_once_check-os.ps1.tmpl
+# Script to detect the operating system and perform OS-specific actions
+
+Write-Output "Checking the operating system..."
+
+{{ if eq .os "windows" }}
+# If the OS is Windows
+Write-Output "This is a Windows machine."
+
+# Example: Install a software using Winget (e.g., Notepad++)
+Write-Output "Installing Notepad++ using Winget..."
+winget install --id=Notepad++.Notepad++ -e --silent || Write-Output "Notepad++ installation skipped or already installed."
+
+# Add more Windows-specific tasks here
+Write-Output "Windows-specific tasks completed."
+{{ else if eq .os "linux" }}
+# If the OS is Linux
+Write-Output "This is a Linux machine. No tasks defined for Linux yet."
+# Placeholder for Linux-specific tasks
+{{ else }}
+# Unknown OS
+Write-Output "Operating system is not recognized. No tasks executed."
+{{ end }}
+
+Write-Output "Script execution finished."
+
