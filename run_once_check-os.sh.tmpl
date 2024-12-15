@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# run_once_check-hostname.sh.tmpl
+# Script to check the machine's name and perform tasks based on it
+
+echo "Checking the machine's name..."
+
+{{ if eq .chezmoi.hostname "foo" }}
+  # If the machine is named 'Station'
+  echo "This machine's name is 'Station'. Performing Station-specific tasks."
+  # Add Station-specific tasks here
+
+{{ else if eq .chezmoi.hostname "bar" }}
+  # If the machine is named 'Agent'
+  echo "This machine's name is 'Agent'. Performing Agent-specific tasks."
+  # Add Agent-specific tasks here
+
+{{ else }}
+  # If the machine's name doesn't match
+  echo "Machine name is '{{ .chezmoi.hostname }}'. No tasks defined for this machine."
+
+{{ end }}
+
+echo "Script execution finished."
+
